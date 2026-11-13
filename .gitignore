@@ -1,0 +1,39 @@
+# Dependencies & package caches
+node_modules/
+.pnpm-store/
+*.tsbuildinfo
+
+# Next.js build output
+apps/web/.next/
+apps/web/out/
+
+# TypeScript build output
+dist/
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+
+# Android / Gradle build & local SDK config
+apps/android-agent/.gradle/
+apps/android-agent/.kotlin/
+apps/android-agent/.idea/
+apps/android-agent/local.properties
+apps/android-agent/build/
+apps/android-agent/*/build/
+*.apk
+*.aab
+*.iml
+
+# Playwright & test artifacts
+tests/e2e/test-results/
+tests/e2e/playwright-report/
+tests/e2e/blob-report/
+coverage/
+
+# Logs & OS files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db

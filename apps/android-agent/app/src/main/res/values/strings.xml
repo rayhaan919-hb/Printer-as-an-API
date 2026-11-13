@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Printer-as-an-API Agent</string>
+    <string name="service_channel_id">print_agent_relay_channel</string>
+    <string name="service_channel_name">Thermal Print Relay</string>
+    <string name="service_notification_title">Print Agent Relay Active</string>
+    <string name="service_notification_connected">Connected to relay • Ready for ESC/POS jobs</string>
+    <string name="service_notification_offline">Relay disconnected • Queuing jobs offline</string>
+</resources>

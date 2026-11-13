@@ -1,0 +1,51 @@
+# MODEL HINT: Use Gemini 4 Hydrogen (High/Extra) for client/server codegen; escalate to Gemini 4 Argon (High) for webhook security & signing.
+openapi: 3.1.0
+info:
+  title: Printer-as-an-API
+  version: 1.0.0
+paths:
+  /v1/print:
+    post:
+      summary: Enqueue a thermal print job
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [printer_id, payload_type, payload]
+              properties:
+                printer_id: { type: string, format: uuid }
+                payload_type: { type: string, enum: [JSON_RECEIPT, RAW_TEXT, HTML] }
+                payload: { type: object }
+      responses:
+        '202':
+          description: Job queued
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  job_id: { type: string, format: uuid }
+                  status: { type: string, enum: [QUEUED] }
+  /v1/printers/pair:
+    post:
+      summary: Pair an Android Print Agent using a 6-digit code
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [pairing_code, name, paper_width_mm]
+              properties:
+                pairing_code: { type: string, minLength: 6, maxLength: 6 }
+                name: { type: string }
+                paper_width_mm: { type: integer, enum: [58, 80] }
+      responses:
+        '200': { description: Paired successfully }
